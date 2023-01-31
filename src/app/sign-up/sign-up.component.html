@@ -1,0 +1,118 @@
+<div class="container">
+  <div class="row">
+    <div class="col"></div>
+    <!--sign up form-->
+    <div class="col">
+      <div class="login-container">
+        <div class="login-content">
+          <mat-toolbar class="login-toolbar" color="primary"
+            >Sign Up</mat-toolbar
+          >
+          <mat-card>
+            <form [formGroup]="loginForm" novalidate (submit)="signUp()">
+              <mat-form-field appearance="outline">
+                <mat-label>Email</mat-label>
+                <input
+                  matInput
+                  style="
+                    font-size: 15px;
+                    height: 17px;
+                    position: relative;
+                    bottom: 2px;
+                  "
+                  placeholder="Email"
+                  formControlName="email"
+                />
+              </mat-form-field>
+              <mat-form-field appearance="outline">
+                <mat-label>Password</mat-label>
+                <input
+                  matInput
+                  style="
+                    font-size: 15px;
+                    height: 17px;
+                    position: relative;
+                    bottom: 2px;
+                  "
+                  autocomplete="false"
+                  placeholder="Password"
+                  type="password"
+                  formControlName="password"
+                />
+              </mat-form-field>
+              <button
+                class="btn col offset-md-4 col-md-4"
+                type="submit"
+                style="
+                  background-color: rgb(0, 177, 0);
+                  color: white;
+                  margin-top: 20px;
+                "
+              >
+                Sign Up
+              </button>
+           
+            </form>
+            <div class="row" style="padding-top: 20px">
+              <button
+                mat-raised-button
+                class="col"
+                style="
+                  color: rgb(0, 0, 0, 54%);
+                  font-size: 15px;
+                  margin: 5px;
+                  background-color: #4c8bf5;
+                  color: white;
+                "
+                (click)="authService.GoogleAuth()"
+              >
+                <i
+                  class="bi bi-google"
+                  type="button"
+                  style="
+                    color: white;
+                    font-size: 20px;
+                    font-weight: bold;
+                    padding: 0px;
+                    margin: 0px;
+                  "
+                ></i>
+                &nbsp;Sign in with Google
+              </button>
+              <button
+                mat-raised-button
+                class="col"
+                style="
+                  color: rgb(0, 0, 0, 54%);
+                  font-size: 15px;
+                  margin: 5px;
+                  background-color: #4c8bf5;
+                  color: white;
+                "
+                (click)="authService.GoogleAuth()"
+              >
+                <i
+                  class="bi bi-facebook"
+                  style="
+                    color: white;
+                    font-size: 20px;
+                    font-weight: bold;
+                    padding: 0px;
+                    margin: 0px;
+                  "
+                ></i>
+                &nbsp;Sign in with Facebook
+              </button>
+              </div>
+            <div class="row" style="padding-top: 10px">
+              <span class="offset-md-3"
+                >Already have an account?
+                <a routerLink="/sign-in">Log In</a></span
+              >
+            </div>
+          </mat-card>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

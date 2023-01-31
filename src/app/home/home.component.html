@@ -1,0 +1,51 @@
+<div class="container-fluid" style="height: 100%; border-radius: 15px">
+  <div class="row">
+    <div class="col-md-4">
+      <mat-card class="row" style="background-color: rgb(231, 231, 231)">
+        <h1 style="text-align: center">Total Practice Time</h1>
+        <h2 style="text-align: center">26 Hours and 25 Minutes</h2>
+      </mat-card>
+      <mat-card class="row" style="background-color: rgb(231, 231, 231)">
+        <h1 style="text-align: center">My instruments</h1>
+        <div *ngFor="let inst of instruments">
+          <h3>{{ inst }}</h3>
+        </div>
+        <div class="row flex-nowrap">
+          <div class="col col-md-9"></div>
+          <button type="button" class="btn col" style="text-align: right">
+            <i
+              class="bi bi-dash-circle-fill"
+              style="font-size: 30px; color: red"
+            ></i>
+          </button>
+          <button type="button" class="btn col" style="text-align: left">
+            <i
+              class="bi bi-plus-circle-fill"
+              style="font-size: 30px; color: rgb(0, 177, 0)"
+            ></i>
+          </button>
+        </div>
+      </mat-card>
+    </div>
+    <div class="col">
+      <mat-card class="row" style="background-color: rgb(231, 231, 231)">
+        <h1 style="text-align: center">My Goals</h1>
+        <div class="row flex-nowrap">
+          <div class="col col-md-9"></div>
+          <button type="button" class="btn col" style="text-align: right">
+            <i
+              class="bi bi-dash-circle-fill"
+              style="font-size: 30px; color: red"
+            ></i>
+          </button>
+          <button type="button" class="btn col" style="text-align: left">
+            <i
+              class="bi bi-plus-circle-fill"
+              style="font-size: 30px; color: rgb(0, 177, 0)"
+            ></i>
+          </button>
+        </div>
+      </mat-card>
+    </div>
+  </div>
+</div>

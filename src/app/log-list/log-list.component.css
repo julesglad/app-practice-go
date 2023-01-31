@@ -1,0 +1,38 @@
+.small-pad {
+    padding: 3px !important
+}
+
+.mat-column-delete {
+    width: 2%
+}
+
+.mat-column-skills {
+    width: 25%
+    
+}
+
+.mat-column-notes {
+    width: 20%
+}
+
+.mat-column-instruments {
+    width: 20%;
+    padding-left: 30px
+}
+
+.mat-column-totalHours {
+    text-align: center;
+    width: 5%
+}
+.mat-column-sessionDate {
+    text-align: center;
+    width: 5%
+}
+.mat-column-totalMinutes {
+    text-align: center;
+    width: 5%
+}
+
+.mat-column-edit {
+    width: 3%
+}

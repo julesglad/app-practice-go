@@ -1,0 +1,25 @@
+.boarder {
+    border-radius: 15px;
+    border-width: 2px;
+    border-style: solid;
+    border-color:darkolivegreen;
+    box-shadow: 6px 4px darkolivegreen;
+}
+
+.header {
+    padding: 20px;
+    color: white;
+    font-size: 50px
+}
+
+.mat-card {
+    margin: 20px
+}
+
+.btn:hover {
+    border: none
+}
+
+.btn {
+    border: none
+}

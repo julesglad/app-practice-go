@@ -1,0 +1,27 @@
+.toolBar {
+    position: fixed;
+    border-radius: .75rem;
+    left: 15%;
+    top: 85%;
+    width: 75%;
+    height: 100px;  
+    background-color: rgb(0, 177, 0);
+    transition: all .2s ease-in-out; 
+    z-index: -1;
+
+  }
+
+  .icon {
+    position: relative;
+    left: 90.5%;
+    top: 88.5%;
+    font-size: 35px;
+    color: white;
+    z-index: 2
+  }
+
+ 
+  
+
+
+  
