@@ -22,7 +22,6 @@ export class LogListComponent implements OnInit {
     'instruments',
     'skills',
     'notes',
-    'edit',
     'delete',
   ];
   instruments;
@@ -87,7 +86,7 @@ export class LogListComponent implements OnInit {
 })
 export class EditLogDialog {
   instruments = ['Clarinet', 'Flute', 'Saxophone'];
-  logForm: any;
+  editForm: any;
   addOnBlur = true;
   selectedValue;
   readonly separatorKeysCodes = [ENTER, COMMA] as const;
@@ -107,7 +106,8 @@ export class EditLogDialog {
     this.selectedValue = this.data.log.instruments
     const date = new Date(this.data.log.sessionDate)
     console.log(date)
-    this.logForm = this.fb.group({
+    this.editForm = this.fb.group({
+      $key: this.data.log.$key,
       sessionDate: [date, Validators.required],
       startTime: [this.data.log.startTime, Validators.required],
       totalHours: [this.data.log.totalHours, Validators.required],
@@ -115,7 +115,7 @@ export class EditLogDialog {
       instruments: '',
       skills: [],
       notes: this.data.log.notes,
-      recording: '',
+     // recording: '',
     });
   }
 
@@ -129,7 +129,7 @@ export class EditLogDialog {
 
     // this.logForm.skillsForm.push(value)
 
-    this.logForm.patchValue({ skills: this.skills });
+    this.editForm.patchValue({ skills: this.skills });
   }
 
   remove(skill: Skill): void {
@@ -140,26 +140,27 @@ export class EditLogDialog {
     console.log(this.skills);
   }
 
-  saveLog() {
-    if (this.logForm.invalid) {
-      console.log('nope');
-    }
 
-    this.logForm.patchValue({
-      sessionDate: formatDate(
-        this.logForm.value.sessionDate,
-        'MM-dd-yyyy',
-        this.locale
-      ),
-    });
-    this.crudApi.UpdateLog(this.logForm.value);
-    setTimeout(
-      () => (
-        console.log(this.logForm.value),
-        this.logForm.reset(),
-        this.logForm.markAsPristine()
-      ),
-      10
-    );
-  }
+  //future feature
+  // saveLog() {
+  //   if (this.editForm.invalid) {
+  //   }
+  //   this.editForm.patchValue({
+  //     sessionDate: formatDate(
+  //       this.editForm.value.sessionDate,
+  //       'MM-dd-yyyy',
+  //       this.locale
+  //     ),
+  //   });
+  //   console.log(this.editForm.value)
+  //   this.crudApi.UpdateLog(this.editForm.value);
+  //   setTimeout(
+  //     () => (
+  //       console.log(this.editForm.value),
+  //       this.editForm.reset(),
+  //       this.editForm.markAsPristine()
+  //     ),
+  //     10
+  //   );
+  // }
 }

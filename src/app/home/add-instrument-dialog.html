@@ -1,0 +1,47 @@
+<div class="row justify-content-end pad-no mr-4">
+<button
+ class="col col-md-2"
+ style="position: relative; bottom: 9px"
+  mat-icon-button
+  [mat-dialog-close]="true"
+>
+  <mat-icon class="close-icon">close</mat-icon>
+</button></div>
+<div class="row pt-2 justify-content-center">
+  <form
+    [formGroup]="addInstrumentForm"
+    style="width: 500px"
+    (ngSubmit)="addInstrument()"
+    class="p-4"
+  >
+    <div *ngFor="let inst of instrumentList">
+      <div class="row justify-content-center">
+        <h2 class="col col-md-5 mt-2 ps-3 ">{{inst.instrumentName}}</h2>
+        <i
+          type="button"
+          class="bi bi-dash-circle-fill btn col col-md-1"
+          style="font-size: 25px; color: red; border: none"
+          (click)="removeInstrument(inst)"
+        ></i>
+      </div>
+    </div>
+    <div class="row pt-5 px-5">
+      <mat-form-field class="col col-md-10" appearance="outline">
+        <mat-label>Instrument</mat-label>
+        <input matInput type="text" formControlName="instrumentName" />
+      </mat-form-field>
+      <button
+        class="btn col col-md-2"
+        type="submit"
+        style="
+          background-color: rgb(0, 177, 0);
+          color: white;
+          height: 50px;
+          margin-top: 5px;
+        "
+      >
+        Add
+      </button>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,121 @@
+<div class="background">
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <div class="row pb-2 justify-content-between">
+          <div class="col-10">
+            <img src="/assets/logo.png" alt="image" class="logo" />
+          </div>
+          <div class="col-2 d-flex justify-content-center">
+            <button
+              mat-raised-button
+              class="btn"
+              type="button"
+              style="
+                background-color: rgb(0, 177, 0);
+                color: white;
+                margin-top: 20px;
+              "
+            >
+              Sign Up
+            </button>
+            <button
+              mat-raised-button
+              class="btn mx-2"
+              type="button"
+              style="
+                background-color: rgb(0, 177, 0);
+                color: white;
+                margin-top: 20px;
+              "
+            >
+              Log In
+            </button>
+          </div>
+        </div>
+
+        <div class="row pt-5">
+          <div class="col-2"></div>
+          <h1 class="col-10 header-text">Practice makes perfect...</h1>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="guitar-pic-wrap">
+              <img src="/assets/4135097.jpg" class="w-100 guitar-pic" />
+            </div>
+          </div>
+
+          <div class="col-sm-6">
+            <div class="row">
+              <div class="col">
+               
+                <p class="site-info p-5"><span class="p-1" style="background-color: rgb(0, 177, 0); color: white">Practice.Go</span> is a free to use web application that allows you to take your musicianship to the next level.
+                 Set goals, log your practice, and use our built in tools for <span style="text-decoration-color: rgb(0, 177, 0); text-decoration-line: underline;">off the charts</span> productivity.
+                </p>
+                
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- <div class="row"></div>
+  <img src="/assets/loglist.png" class="log-list-img" />
+</div> -->
+        </div>
+        <div class="row">
+          <div class="col">
+            <div class="card log-desc mat-elevation-z8">
+              <div class="row justify-content-between">
+                <div class="pb-5">
+                  <h1 *ngIf="view == 'newSession'">Session Logs</h1>
+                  <p *ngIf="view == 'newSession'">{{ newSessionText }}</p>
+                  <h1 *ngIf="view == 'log'">View Logs</h1>
+                  <p *ngIf="view == 'log'">{{ logText }}</p>
+                  <h1 *ngIf="view == 'metronome'">Built In Metronome</h1>
+                  <p *ngIf="view == 'metronome'">{{ metronomeText }}</p>
+                  <h1 *ngIf="view == 'goals'">Set Goals</h1>
+                  <p *ngIf="view == 'goals'">{{ goalsText }}</p>
+                </div>
+                <i
+                  class="col bi bi-plus-square"
+                  (click)="changeView('newSession')"
+                  type="button"
+                  [style.color]="view == 'newSession' ? '#a7f725' : 'white'"
+                ></i>
+                <i
+                  class="col bi bi-bar-chart-line-fill list-icon"
+                  (click)="changeView('log')"
+                  type="button"
+                  [style.color]="view == 'log' ? '#a7f725' : 'white'"
+                ></i>
+                <i
+                  class="col bi bi-list-check"
+                  (click)="changeView('goals')"
+                  type="button"
+                  [style.color]="view == 'goals' ? '#a7f725' : 'white'"
+                ></i>
+                <i
+                  class="col bi bi-play-circle-fill"
+                  (click)="changeView('metronome')"
+                  type="button"
+                  [style.color]="view == 'metronome' ? '#a7f725' : 'white'"
+                ></i>
+          </div>
+          </div>
+          <div class="row">
+      
+              <video *ngIf="view == 'goals'" class="col goal-vid" width="420" autoplay loop muted>
+                <source src="/assets/goalsVideoV2.mp4" type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+              <img *ngIf="view == 'log'" class="col" src="/assets/loglist.png" class="" />
+              <video *ngIf="view == 'metronome'" class="col met-vid" width="420" autoplay loop muted>
+                <source src="/assets/metronome video.mp4" type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+              <img *ngIf="view == 'newSession'" class="col" src="/assets/Screenshot 2023-03-07 203410.png" class="new-session-pic" />
+          </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,4 +1,4 @@
-<mat-card style="padding: 40px">
+<mat-card style="padding: 40px" class="mat-elevation-z8">
   <div class="row align-items-center">
     <h1 class="col title">New Session</h1>
   </div>
@@ -13,7 +13,6 @@
           [matDatepicker]="picker1"
           formControlName="sessionDate"
         />
-        <mat-hint style="font-size: 15px">MM/DD/YYYY</mat-hint>
         <mat-datepicker-toggle
           matSuffix
           [for]="picker1"
@@ -37,14 +36,18 @@
         <input
           matInput
           type="number"
+          min="1"
+          max="59"
           formControlName="totalMinutes"
           style="font-size: 15px; height: 17px; position: relative; bottom: 2px"
         />
+        <mat-error *ngIf="logForm.invalid"
+          >Must be 59 minutes or less.</mat-error
+        >
       </mat-form-field>
     </div>
     <!--row two-->
-    <div class="row" style="padding-top: 20px">
-     
+    <div class="row">
       <!--instrument-->
       <mat-form-field appearance="outline" class="col col-md-5">
         <mat-label>Instruments</mat-label>
@@ -58,36 +61,31 @@
           }}</mat-option>
         </mat-select>
       </mat-form-field>
-            <!--skills-->
-            <mat-form-field class="example-chip-list col" appearance="outline">
-              <mat-label>Practiced skills and repertoire</mat-label>
-              <mat-chip-list formControlName="skills" [multiple]="true" #chipList>
-                <mat-chip
-                  *ngFor="let skill of skills"
-                  (removed)="remove(skill)"
-                >
-                  {{ skill }}
-                  <button matChipRemove>
-                    <i class="bi bi-x"></i>
-                  </button>
-                </mat-chip>
-                <input 
-                  placeholder="Press enter to add new skill..."
-                  [matChipInputFor]="chipList"
-                  [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-                  [matChipInputAddOnBlur]="addOnBlur"
-                  (matChipInputTokenEnd)="add($event)"
-                />
-              </mat-chip-list>
-            </mat-form-field>
-      
+      <!--skills-->
+      <mat-form-field class="example-chip-list col" appearance="outline">
+        <mat-label>Practiced skills and repertoire</mat-label>
+        <mat-chip-list formControlName="skills" [multiple]="true" #chipList>
+          <mat-chip *ngFor="let skill of skills" (removed)="remove(skill)">
+            {{ skill }}
+            <button matChipRemove>
+              <i class="bi bi-x"></i>
+            </button>
+          </mat-chip>
+          <input
+            placeholder="Press enter to add new skill..."
+            [matChipInputFor]="chipList"
+            [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+            [matChipInputAddOnBlur]="addOnBlur"
+            (matChipInputTokenEnd)="add($event)"
+          />
+        </mat-chip-list>
+      </mat-form-field>
     </div>
     <!--row three-->
-    <div class="row">
-    </div>
+
     <div class="row">
       <!--notes-->
-      <mat-form-field appearance="outline" class="col col-md-11">
+      <mat-form-field appearance="outline" class="col">
         <mat-label>Notes</mat-label>
 
         <input
@@ -98,7 +96,7 @@
       </mat-form-field>
 
       <!--record-->
-      <button
+      <!-- <button
         class="col btn"
         type="button"
         style="
@@ -119,7 +117,7 @@
             ></i>
           </div>
         </div>
-      </button>
+      </button> -->
     </div>
     <!--last row-->
     <div class="row align-items-center">

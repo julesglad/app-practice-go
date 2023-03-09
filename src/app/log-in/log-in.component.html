@@ -1,14 +1,32 @@
-<div class="container">
-  <div class="row">
-    <div class="col"></div>
-    <div class="col" style="padding-top: 200px">
-      <div class="login-container">
-        <div class="login-content">
-          <mat-toolbar class="login-toolbar" color="primary"
-            >Sign In</mat-toolbar
-          >
-          <mat-card>
-            <form [formGroup]="loginForm" novalidate  (submit)="signIn()">
+<div class="row p-4">
+  <div class="col col-md-4">
+    <img src="/assets/logo.png" alt="image" class="logo" />
+  </div>
+</div>
+
+<div class="row background justify-content-center">
+  <!-- <div class="col">
+    <div class="row justify-content-center">
+      <div class="col col-md-8" style="padding-top: 40%"><img src="/assets/logo.png" alt="image" /></div>
+    </div>
+  </div> -->
+
+  <div class="col col-md-7" style="padding-top: 100px">
+    <div class="row justify-content-center align-items-center">
+      <div class="col col-md-5">
+        <mat-card
+          class="mat-elevation-z8"
+          style="padding: 0px !important; margin: 0px !important"
+        >
+          <div class="pb-3">
+            <div class="login-toolbar rounded-top">Sign In</div>
+
+            <form
+              [formGroup]="loginForm"
+              novalidate
+              class="p-3"
+              (submit)="signIn()"
+            >
               <!-- <mat-form-field>
                             <i class="bi bi-person-fill"></i>
                             <input autofocus type="text" matInput >
@@ -51,74 +69,72 @@
                   formControlName="password"
                 />
               </mat-form-field>
-              <div class="col offset-md-3">
-                <p style="padding-left: 10px">New here? <a href="/" >Sign Up Now</a></p>
+              <div class="row justify-content-center">
+                <div class="col col-md-8 d-flex justify-content-center">
+                  <p style="padding-left: 10px">
+                    New here? <a href="/">Sign Up Now</a>
+                  </p>
+                </div>
               </div>
-              <button
-                class="btn col offset-md-5 col-md-2"
-                type="submit"
-                style="
-                  background-color: rgb(0, 177, 0);
-                  color: white;
-                  margin-top: 20px;
-                "
-              >
-                Login
-              </button>
-           
-            </form>
-            <div class="row" style="padding-top: 20px">
-              <button
-                mat-raised-button
-                class="col"
-                style="
-                  color: rgb(0, 0, 0, 54%);
-                  font-size: 15px;
-                  margin: 5px;
-                  background-color: #4c8bf5;
-                  color: white;
-                "
-                (click)="authService.GoogleAuth()"
-              >
-                <i
-                  class="bi bi-google"
+              <div class="row justify-content-center">
+                <button
+                  class="btn col col-md-6"
+                  type="submit"
                   style="
+                    background-color: rgb(0, 177, 0);
                     color: white;
-                    font-size: 20px;
-                    font-weight: bold;
-                    padding: 0px;
-                    margin: 0px;
+                    margin-top: 20px;
                   "
-                ></i>
-                &nbsp;Sign in with Google
-              </button>
-              <button
-                mat-raised-button
-                class="col"
-                style="
-                  color: rgb(0, 0, 0, 54%);
-                  font-size: 15px;
-                  margin: 5px;
-                  background-color: #4c8bf5;
-                  color: white;
-                "
-                (click)="authService.GoogleAuth()"
-              >
-                <i
-                  class="bi bi-facebook"
-                  style="
-                    color: white;
-                    font-size: 20px;
-                    font-weight: bold;
-                    padding: 0px;
-                    margin: 0px;
-                  "
-                ></i>
-                &nbsp;Sign in with Facebook
-              </button>
+                >
+                  Login
+                </button>
+              </div>
+              <div class="row justify-content-center pt-2">
+                <p class="col col-md-6 text-center">or continue with</p>
+              </div> <div class="row justify-content-center pb-3 pt-4">
+              <div class="col col-md-3 d-flex justify-content-center">
+                <button
+                  mat-fab
+                  style="color: rgb(0, 0, 0, 54%); background-color: white"
+                  (click)="authService.GoogleAuth()"
+                >
+                  <!-- <i
+                    class="bi bi-google"
+                    style="
+                      color: white;
+                      font-size: 20px;
+                      font-weight: bold;
+                      padding: 0px;
+                      margin: 0px;
+                    "
+                  ></i> -->
+                  <img
+                    class="mb-5"
+                    src="/assets/google-logo-icon-PNG-Transparent-Background.png"
+                    alt="image"
+                    class="google-icon"
+                    style="position: relative; bottom: 3px"
+                  />
+                </button>
+              </div>
+              <div class="col col-md-3 d-flex justify-content-center">
+                <button mat-fab style="background-color: white">
+                  <i
+                    class="bi bi-facebook"
+                    style="
+                      color: #3b5998;
+                      font-size: 35px;
+                      position: relative;
+                      bottom: 5px;
+                    "
+                  ></i>
+                </button>
+              </div>
             </div>
-          </mat-card>
-        </div>
+            </form>
+           </div
+        ></mat-card>
       </div>
     </div>
+  </div>
 </div>

@@ -2,7 +2,10 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HomeComponent } from './home/home.component';
+import {
+  AddInstrumentDialog,
+  HomeComponent,
+} from './home/home.component';
 import { NewSessionComponent } from './new-session/new-session.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -16,11 +19,13 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatCardModule } from '@angular/material/card';
 import { MatChipsModule } from '@angular/material/chips';
-import {MatButtonModule} from '@angular/material/button';
-import {MatTableModule} from '@angular/material/table';
+import { MatButtonModule } from '@angular/material/button';
+import { MatTableModule } from '@angular/material/table';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+
 import { LogInComponent } from './log-in/log-in.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import {MatExpansionModule} from '@angular/material/expansion';
+import { MatExpansionModule } from '@angular/material/expansion';
 // Firebase services + environment module
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
@@ -33,9 +38,13 @@ import { SignUpComponent } from './sign-up/sign-up.component';
 import { VerifyEmailComponent } from './verify-email/verify-email.component';
 import { CrudService } from './services/crud.service';
 import { EditLogDialog, LogListComponent } from './log-list/log-list.component';
-import {MatIconModule} from '@angular/material/icon';
-import {MatDialogModule} from '@angular/material/dialog';
+import { MatIconModule } from '@angular/material/icon';
+import { MatDialogModule } from '@angular/material/dialog';
 import { ToolbarComponent } from './toolbar/toolbar/toolbar.component';
+import { MatSliderModule } from '@angular/material/slider';
+import { DragDropModule } from '@angular/cdk/drag-drop';
+import { LandingPageComponent } from './landing-page/landing-page.component';
+import {MatGridListModule} from '@angular/material/grid-list';
 
 @NgModule({
   declarations: [
@@ -47,8 +56,11 @@ import { ToolbarComponent } from './toolbar/toolbar/toolbar.component';
     SignUpComponent,
     VerifyEmailComponent,
     LogListComponent,
-  EditLogDialog,
-  ToolbarComponent  ],
+    EditLogDialog,
+    ToolbarComponent,
+    AddInstrumentDialog,
+    LandingPageComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -62,8 +74,12 @@ import { ToolbarComponent } from './toolbar/toolbar/toolbar.component';
     MatNativeDateModule,
     MatFormFieldModule,
     MatSelectModule,
+    DragDropModule,
+    MatCheckboxModule,
     MatExpansionModule,
+    MatGridListModule,
     MatCardModule,
+    MatSliderModule,
     MatButtonModule,
     MatDialogModule,
     MatIconModule,

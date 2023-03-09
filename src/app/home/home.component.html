@@ -1,50 +1,95 @@
 <div class="container-fluid" style="height: 100%; border-radius: 15px">
   <div class="row">
     <div class="col-md-4">
-      <mat-card class="row" style="background-color: rgb(231, 231, 231)">
+      <!-- <mat-card class="row" style="background-color: rgb(0, 177, 0, 0.05)">
         <h1 style="text-align: center">Total Practice Time</h1>
         <h2 style="text-align: center">26 Hours and 25 Minutes</h2>
-      </mat-card>
-      <mat-card class="row" style="background-color: rgb(231, 231, 231)">
-        <h1 style="text-align: center">My instruments</h1>
-        <div *ngFor="let inst of instruments">
-          <h3>{{ inst }}</h3>
+      </mat-card> -->
+      <mat-card class="row" style="background-color: rgb(0, 177, 0, 0.05)">
+        <h1 style="text-align: center" class="pb-4">My instruments</h1>
+        <div *ngFor="let inst of instrumentsArray" class="ps-5 ">
+          <p class="fs-5 p-1">{{ inst.instrumentName }}</p>
         </div>
         <div class="row flex-nowrap">
-          <div class="col col-md-9"></div>
-          <button type="button" class="btn col" style="text-align: right">
-            <i
-              class="bi bi-dash-circle-fill"
-              style="font-size: 30px; color: red"
-            ></i>
-          </button>
+          <div class="col col-md-11"></div>
           <button type="button" class="btn col" style="text-align: left">
             <i
-              class="bi bi-plus-circle-fill"
+              class="bi bi-pencil-square"
               style="font-size: 30px; color: rgb(0, 177, 0)"
+              (click)="addInstrument()"
             ></i>
           </button>
         </div>
       </mat-card>
     </div>
     <div class="col">
-      <mat-card class="row" style="background-color: rgb(231, 231, 231)">
-        <h1 style="text-align: center">My Goals</h1>
-        <div class="row flex-nowrap">
-          <div class="col col-md-9"></div>
-          <button type="button" class="btn col" style="text-align: right">
+      <mat-card class="row" style="background-color: rgb(0, 177, 0, 0.05)"
+        ><form [formGroup]="goalForm" (ngSubmit)="addGoal()">
+          <h1 style="text-align: center">My Goals</h1>
+          <div class="row flex-nowrap">
+            <mat-form-field class="col col-md-11" appearance="outline">
+              <mat-label>Add new goal...</mat-label>
+              <input matInput type="text" formControlName="goalText" />
+            </mat-form-field>
+            <button type="submit" class="btn col mb-3" style="text-align: left">
+              <i
+                class="bi bi-plus-circle-fill"
+                style="font-size: 30px; color: rgb(0, 177, 0)"
+              ></i>
+            </button>
+          </div>
+          <div class="row px-4" *ngFor="let goal of goalsList">
+            <p
+              *ngIf="!goal.completed"
+              class="col col-md-9 fs-5"
+            >
+              {{ goal.goalText }}
+            </p>
+            <p
+              *ngIf="goal.completed"
+              class="col col-md-9 fs-5 text-decoration-line-through"
+            >
+              {{ goal.goalText }}
+            </p>
+
             <i
-              class="bi bi-dash-circle-fill"
-              style="font-size: 30px; color: red"
+              *ngIf="!goal.completed"
+              type="button"
+              class="bi bi-check-circle-fill btn col col-md-1 text-end"
+              style="
+                font-size: 25px;
+                color: rgb(0, 177, 0);
+                position: relative;
+                bottom: 10px;
+              "
+              (click)="changeGoalCompletionTrue(goal)"
             ></i>
-          </button>
-          <button type="button" class="btn col" style="text-align: left">
             <i
-              class="bi bi-plus-circle-fill"
-              style="font-size: 30px; color: rgb(0, 177, 0)"
+              *ngIf="goal.completed"
+              type="button"
+              class="bi bi-arrow-left-circle-fill btn col col-md-1 text-end"
+              (click)="changeGoalCompletionFalse(goal)"
+
+              style="
+                font-size: 25px;
+                color: rgb(112, 112, 112);
+                position: relative;
+                bottom: 10px;
+              "
             ></i>
-          </button>
-        </div>
+            <i
+              type="button"
+              class="bi bi-dash-circle-fill btn col col-md-1 text-start"
+              style="
+                font-size: 25px;
+                color: red;
+                position: relative;
+                bottom: 10px;
+              "
+              (click)="deleteGoal(goal)"
+            ></i>
+          </div>
+        </form>
       </mat-card>
     </div>
   </div>

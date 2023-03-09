@@ -1,7 +1,7 @@
-import { Component, OnInit, LOCALE_ID, Inject } from '@angular/core';
+import { Component, OnInit, LOCALE_ID, Inject, ViewChild } from '@angular/core';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, FormGroupDirective, Validators } from '@angular/forms';
 import { CrudService } from '../services/crud.service';
 import { formatDate } from '@angular/common';
 
@@ -19,6 +19,7 @@ export class NewSessionComponent implements OnInit {
   selectedValue;
   readonly separatorKeysCodes = [ENTER, COMMA] as const;
   skills: Skill[] = [];
+  @ViewChild(FormGroupDirective) formGroupDirective: FormGroupDirective;
 
   add(event: MatChipInputEvent): void {
     const value = (event.value || '').trim();
@@ -65,20 +66,25 @@ export class NewSessionComponent implements OnInit {
       console.log('nope');
     }
 
+    this.logForm.patchValue({
+      sessionDate: formatDate(
+        this.logForm.value.sessionDate,
+        'MM-dd-yyyy',
+        this.locale
+      ),
+    });
+    this.crudApi.newLog(this.logForm.value);
+    setTimeout(
+      () => (
+        console.log(this.logForm.value),
+        this.skills = [],
+        this.logForm.reset(),
+        this.logForm.markAsPristine(),
+        this.logForm.markAsUntouched(),
+        this.formGroupDirective.resetForm()
 
-      this.logForm.patchValue({
-        sessionDate: formatDate(
-          this.logForm.value.sessionDate,
-          'MM-dd-yyyy',
-          this.locale
-        ),
-      });
-      this.crudApi.newLog(this.logForm.value);
-      setTimeout(
-        () => (console.log(this.logForm.value), this.logForm.reset(),
-        this.logForm.markAsPristine()),
-        10
-      );
-    }
-  
+      ),
+      10
+    );
+  }
 }

@@ -25,15 +25,16 @@
         <i class="bi bi-bar-chart-line-fill" routerLink="log-list" style="font-size: 35px"></i>
       </mat-list-item>
       <mat-list-item class="navIcon">
-        <i class="bi bi-play-circle-fill" style="font-size: 35px"></i>
+        <i class="bi bi-play-circle-fill" style="font-size: 35px"
+        type="button" (click)="changeDisplayMetronome()"></i>
       </mat-list-item>
-      <mat-list-item class="navIcon">
+      <!-- <mat-list-item class="navIcon">
         <i class="bi bi-music-note" style="font-size: 35px"></i>
-      </mat-list-item>
+      </mat-list-item> -->
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content class="content">
-    <div class="row" style="padding-bottom: 60px">
+    <div class="row justify-content-between" style="padding-bottom: 60px">
       <div class="col col-md-8">
         <img src="/assets/logo.png" style="width: 250px; padding-top: 10px" alt="image" />
       </div>
@@ -70,12 +71,11 @@
     </div>
     <div class="row">
       <router-outlet></router-outlet>
-      
       <div>
-        <app-toolbar></app-toolbar>
+        <app-toolbar *ngIf="displayMetronome"></app-toolbar>
       </div>
       </div
   ></mat-sidenav-content>
 </mat-sidenav-container>
 
-<!-- <router-outlet *ngIf="!authService.userData as user"></router-outlet> -->
+<router-outlet *ngIf="!authService.userData as user"></router-outlet>

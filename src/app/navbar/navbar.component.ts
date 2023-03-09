@@ -8,6 +8,7 @@ import { AuthService } from '../services/auth.service';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
+  displayMetronome;
 
   constructor(public authService: AuthService, private router: Router) { }
 
@@ -15,5 +16,9 @@ export class NavbarComponent implements OnInit {
   }
 
 
+  changeDisplayMetronome(){
+    this.displayMetronome = !this.displayMetronome
+  
+  }
 
 }

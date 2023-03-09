@@ -25,3 +25,20 @@ a {
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.mat-accent .mat-slider-track-fill {
+    background-color: white !important;
+}
+
+.mat-slider-thumb-label {
+    background-color: white !important;
+
+}
+
+.mat-slider-thumb {
+    background-color: white !important;
+}
+
+*{
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}

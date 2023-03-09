@@ -1,2 +1,30 @@
-<div class="toolBar">
+<div cdkDrag >
+<div class="toolBar row align-items-center pe-5" >
+  <div class="row justify-content-around">
+    <i class="bi bi-play-fill col col-md-1 icon pt-2" *ngIf="!pause"
+    type="button" (click)="playMetronome()"></i>
+    <i class="bi bi-pause-fill col col-md-1 icon pt-2" *ngIf="pause"
+    type="button" (click)="pauseMetronome()"></i>
+    <mat-slider
+      class="col col-md-6 mt-1 me-3"
+      min="40"
+      max="250"
+      step="1"
+      discrete
+      [value]="bpm"
+      (input)="onInputChange($event)"
+    >
+      <input matSliderThumb [(ngModel)]="bpm" />
+    </mat-slider>
+    <div class="col col-md-1">
+      <h1 style="font-size: 35px; color: white; padding-top: 10px" class="">
+        {{ bpm }}bpm
+      </h1>
+    </div>
+    <div class="col col-md-1 pt-2" cdkDragHandle>
+        <i class="bi bi-arrows-move"  style="font-size: 35px; color: white; padding-top: 10px; margin-left: 60px; cursor: pointer; " ></i>
+
+    </div>
+  </div>
+</div>
 </div>
