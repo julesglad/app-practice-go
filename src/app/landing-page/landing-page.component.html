@@ -3,18 +3,19 @@
     <div class="row">
       <div class="col">
         <div class="row pb-2 justify-content-between">
-          <div class="col-10">
+          <div class="col-md-9 col-xs-6 logo-container">
             <img src="/assets/logo.png" alt="image" class="logo" />
           </div>
-          <div class="col-2 d-flex justify-content-center">
+          <div class="col-md-3 col-xs-6 d-flex justify-content-center">
             <button
               mat-raised-button
-              class="btn"
+              class="btn "
               type="button"
               style="
                 background-color: rgb(0, 177, 0);
                 color: white;
                 margin-top: 20px;
+                min-width: 100px;
               "
             >
               Sign Up
@@ -27,6 +28,8 @@
                 background-color: rgb(0, 177, 0);
                 color: white;
                 margin-top: 20px;
+                min-width: 100px;
+
               "
             >
               Log In
@@ -40,13 +43,13 @@
         </div>
 
         <div class="row">
-          <div class="col-sm-6">
+          <div class="col-lg-6">
             <div class="guitar-pic-wrap">
               <img src="/assets/4135097.jpg" class="w-100 guitar-pic" />
             </div>
           </div>
 
-          <div class="col-sm-6">
+          <div class="col-lg-6">
             <div class="row">
               <div class="col">
                 <p class="site-info p-5">
@@ -70,24 +73,19 @@
               </div>
             </div>
           </div>
-        </div>
-        <!-- <div class="row"></div>
-  <img src="/assets/loglist.png" class="log-list-img" />
-</div> -->
-      </div>
-      <div class="row">
+        </div> <div class="row">
         <div class="col">
           <div class="card log-desc mat-elevation-z8">
             <div class="row justify-content-between">
               <div class="pb-5">
-                <h1 *ngIf="view == 'newSession'">Session Logs</h1>
-                <p *ngIf="view == 'newSession'">{{ newSessionText }}</p>
-                <h1 *ngIf="view == 'log'">View Logs</h1>
-                <p *ngIf="view == 'log'">{{ logText }}</p>
-                <h1 *ngIf="view == 'metronome'">Built In Metronome</h1>
-                <p *ngIf="view == 'metronome'">{{ metronomeText }}</p>
-                <h1 *ngIf="view == 'goals'">Set Goals</h1>
-                <p *ngIf="view == 'goals'">{{ goalsText }}</p>
+                <h1 [hidden]="view != 'newSession'">Session Logs</h1>
+                <p [hidden]="view != 'newSession'">{{ newSessionText }}</p>
+                <h1 [hidden]="view != 'log'">View Logs</h1>
+                <p [hidden]="view != 'log'">{{ logText }}</p>
+                <h1 [hidden]="view != 'metronome'">Built In Metronome</h1>
+                <p [hidden]="view != 'metronome'">{{ metronomeText }}</p>
+                <h1 [hidden]="view != 'goals'">Set Goals</h1>
+                <p [hidden]="view != 'goals'">{{ goalsText }}</p>
               </div>
               <i
                 class="col bi bi-plus-square"
@@ -95,7 +93,6 @@
                 type="button"
                 [style.color]="view == 'newSession' ? '#a7f725' : 'white'"
                 matTooltip="New Session"
-
               ></i>
               <i
                 class="col bi bi-bar-chart-line-fill list-icon"
@@ -103,7 +100,6 @@
                 type="button"
                 [style.color]="view == 'log' ? '#a7f725' : 'white'"
                 matTooltip="View logs"
-
               ></i>
               <i
                 class="col bi bi-list-check"
@@ -111,7 +107,6 @@
                 type="button"
                 [style.color]="view == 'goals' ? '#a7f725' : 'white'"
                 matTooltip="Set goals"
-
               ></i>
               <i
                 class="col bi bi-play-circle-fill"
@@ -119,41 +114,30 @@
                 type="button"
                 [style.color]="view == 'metronome' ? '#a7f725' : 'white'"
                 matTooltip="View metronome"
-
               ></i>
             </div>
           </div>
           <div class="row">
-            <video
-              *ngIf="view == 'goals'"
-              class="col goal-vid"
-              width="420"
-              autoplay
-              loop
-              muted
-            >
-              <source src="/assets/goalsVideoV2.mp4" type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
             <img
-              *ngIf="view == 'log'"
+            [hidden]="view != 'goals'"
+            class="col"
+            src="/assets/goals.png"
+            class=""
+          />
+            <img
+              [hidden]="view != 'log'"
               class="col"
               src="/assets/loglist.png"
               class=""
             />
-            <video
-              *ngIf="view == 'metronome'"
-              class="col met-vid"
-              width="420"
-              autoplay
-              loop
-              muted
-            >
-              <source src="/assets/metronome video.mp4" type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
             <img
-              *ngIf="view == 'newSession'"
+            [hidden]="view != 'metronome'"
+            class="col"
+            src="/assets/metronome.png"
+            class="met-pic"
+          />
+            <img
+              [hidden]="view != 'newSession'"
               class="col"
               src="/assets/Screenshot 2023-03-07 203410.png"
               class="new-session-pic"
@@ -161,9 +145,11 @@
           </div>
         </div>
       </div>
+      </div>
+     
     </div>
   </div>
-  <div class="row row-3">
+  <div class="row row-3 ">
     <div class="col-4 text-center">
       <a href="https://www.buymeacoffee.com/julesglad" target="_blank">
         <button mat-fab style="background-color: rgb(255, 255, 255)">
@@ -171,7 +157,6 @@
             class="bi bi-cup-hot-fill"
             style="color: rgb(0, 177, 0); font-size: 25px"
             matTooltip="Buy Julie a coffee"
-
           ></i>
         </button>
       </a>
@@ -183,7 +168,6 @@
             class="bi bi-person-video"
             style="color: rgb(0, 177, 0); font-size: 25px"
             matTooltip="Visit Julie's dev site"
-
           ></i>
         </button>
       </a>
@@ -195,7 +179,6 @@
             class="bi bi-code-square"
             style="color: rgb(0, 177, 0); font-size: 25px"
             matTooltip="View the site's code"
-
           ></i>
         </button>
       </a>

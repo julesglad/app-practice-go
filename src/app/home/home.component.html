@@ -1,18 +1,14 @@
 <div class="container-fluid" style="height: 100%; border-radius: 15px">
   <div class="row">
-    <div class="col-md-4">
-      <!-- <mat-card class="row" style="background-color: rgb(0, 177, 0, 0.05)">
-        <h1 style="text-align: center">Total Practice Time</h1>
-        <h2 style="text-align: center">26 Hours and 25 Minutes</h2>
-      </mat-card> -->
+    <div class="col-lg-4">
       <mat-card class="row" style="background-color: rgb(0, 177, 0, 0.05)">
         <h1 style="text-align: center" class="pb-4">My instruments</h1>
         <div *ngFor="let inst of instrumentsArray" class="ps-5 ">
           <p class="fs-5 p-1">{{ inst.instrumentName }}</p>
         </div>
         <div class="row flex-nowrap">
-          <div class="col col-md-11"></div>
-          <button type="button" class="btn col" style="text-align: left">
+          <div class="col-11"></div>
+          <button type="button" class="btn col-1" style="text-align: left">
             <i
               class="bi bi-pencil-square"
               style="font-size: 30px; color: rgb(0, 177, 0)"
@@ -22,16 +18,16 @@
         </div>
       </mat-card>
     </div>
-    <div class="col">
+    <div class="col-lg-8">
       <mat-card class="row" style="background-color: rgb(0, 177, 0, 0.05)"
         ><form [formGroup]="goalForm" (ngSubmit)="addGoal()">
           <h1 style="text-align: center">My Goals</h1>
           <div class="row flex-nowrap">
-            <mat-form-field class="col col-md-11" appearance="outline">
+            <mat-form-field class=" col-md-12" appearance="outline">
               <mat-label>Add new goal...</mat-label>
               <input matInput type="text" formControlName="goalText" />
             </mat-form-field>
-            <button type="submit" class="btn col mb-3" style="text-align: left">
+            <button type="submit" class="btn col-md-1 mb-3" style="text-align: left">
               <i
                 class="bi bi-plus-circle-fill"
                 style="font-size: 30px; color: rgb(0, 177, 0)"
@@ -41,13 +37,13 @@
           <div class="row px-4" *ngFor="let goal of goalsList">
             <p
               *ngIf="!goal.completed"
-              class="col col-md-9 fs-5"
+              class=" col-9 fs-5"
             >
               {{ goal.goalText }}
             </p>
             <p
               *ngIf="goal.completed"
-              class="col col-md-9 fs-5 text-decoration-line-through"
+              class="col-9 fs-5 text-decoration-line-through"
             >
               {{ goal.goalText }}
             </p>
@@ -55,7 +51,7 @@
             <i
               *ngIf="!goal.completed"
               type="button"
-              class="bi bi-check-circle-fill btn col col-md-1 text-end"
+              class="bi bi-check-circle-fill btn col-1 text-end"
               style="
                 font-size: 25px;
                 color: rgb(0, 177, 0);
@@ -67,7 +63,7 @@
             <i
               *ngIf="goal.completed"
               type="button"
-              class="bi bi-arrow-left-circle-fill btn col col-md-1 text-end"
+              class="bi bi-arrow-left-circle-fill btn col-1 text-end"
               (click)="changeGoalCompletionFalse(goal)"
 
               style="
@@ -79,7 +75,7 @@
             ></i>
             <i
               type="button"
-              class="bi bi-dash-circle-fill btn col col-md-1 text-start"
+              class="bi bi-dash-circle-fill btn col-1 text-start"
               style="
                 font-size: 25px;
                 color: red;

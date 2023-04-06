@@ -45,6 +45,7 @@ import { MatSliderModule } from '@angular/material/slider';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import {MatGridListModule} from '@angular/material/grid-list';
+import {MatTooltipModule} from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [
@@ -75,6 +76,7 @@ import {MatGridListModule} from '@angular/material/grid-list';
     MatFormFieldModule,
     MatSelectModule,
     DragDropModule,
+    MatTooltipModule,
     MatCheckboxModule,
     MatExpansionModule,
     MatGridListModule,

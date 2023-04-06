@@ -24,3 +24,7 @@
     border: none
 }
 
+.bi-plus-circle-fill {
+    position: relative;
+    right: 70px;
+}

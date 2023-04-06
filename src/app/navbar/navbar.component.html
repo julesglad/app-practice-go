@@ -34,19 +34,16 @@
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content class="content">
-    <div class="row justify-content-between" style="padding-bottom: 60px">
-      <div class="col col-md-8">
+    <div class="row" style="padding-bottom: 60px">
+      <div class=" col-md-6 col-lg-7">
         <img src="/assets/logo.png" style="width: 250px; padding-top: 10px" alt="image" />
       </div>
 
-      <mat-expansion-panel hideToggle class="col col-md-2">
+      <mat-expansion-panel hideToggle class="col-md-5 col-lg-4">
         <mat-expansion-panel-header>
           <mat-panel-title>
-            <div style="font-size: 25px; padding-left: 15px;">
-              {{ user.displayName }}
-            </div>
-            <div>
-              <i
+            <div  style="font-size: 25px; padding-left: 25px; min-width: 200px; text-align: center;">
+              {{ user.displayName }}    <i
                 class="bi bi-person-circle"
                 style="
                   font-size: 25px;
@@ -55,6 +52,7 @@
                 "
               ></i>
             </div>
+            
           </mat-panel-title>
           <mat-panel-description> </mat-panel-description>
         </mat-expansion-panel-header>

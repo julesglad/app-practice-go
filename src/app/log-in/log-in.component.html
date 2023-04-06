@@ -1,5 +1,5 @@
 <div class="row p-4">
-  <div class="col col-md-4">
+  <div class="col-md-8">
     <img src="/assets/logo.png" alt="image" class="logo" />
   </div>
 </div>
@@ -11,11 +11,11 @@
     </div>
   </div> -->
 
-  <div class="col col-md-7" style="padding-top: 100px">
+  <div class="col-12" style="padding-top: 100px">
     <div class="row justify-content-center align-items-center">
-      <div class="col col-md-5">
+      <div class="col-md-6 login-card">
         <mat-card
-          class="mat-elevation-z8"
+          class="mat-elevation-z8 "
           style="padding: 0px !important; margin: 0px !important"
         >
           <div class="pb-3">
@@ -70,7 +70,7 @@
                 />
               </mat-form-field>
               <div class="row justify-content-center">
-                <div class="col col-md-8 d-flex justify-content-center">
+                <div class="col-8 d-flex justify-content-center">
                   <p style="padding-left: 10px">
                     New here? <a href="/">Sign Up Now</a>
                   </p>
@@ -78,7 +78,7 @@
               </div>
               <div class="row justify-content-center">
                 <button
-                  class="btn col col-md-6"
+                  class="btn col-6"
                   type="submit"
                   style="
                     background-color: rgb(0, 177, 0);
@@ -90,15 +90,16 @@
                 </button>
               </div>
               <div class="row justify-content-center pt-2">
-                <p class="col col-md-6 text-center">or continue with</p>
-              </div> <div class="row justify-content-center pb-3 pt-4">
-              <div class="col col-md-3 d-flex justify-content-center">
-                <button
-                  mat-fab
-                  style="color: rgb(0, 0, 0, 54%); background-color: white"
-                  (click)="authService.GoogleAuth()"
-                >
-                  <!-- <i
+                <p class="col-6 text-center">or continue with</p>
+              </div>
+              <div class="row justify-content-center pb-3 pt-4">
+                <div class="col-3 d-flex justify-content-center">
+                  <button
+                    mat-fab
+                    style="color: rgb(0, 0, 0, 54%); background-color: white"
+                    (click)="authService.GoogleAuth()"
+                  >
+                    <!-- <i
                     class="bi bi-google"
                     style="
                       color: white;
@@ -108,31 +109,30 @@
                       margin: 0px;
                     "
                   ></i> -->
-                  <img
-                    class="mb-5"
-                    src="/assets/google-logo-icon-PNG-Transparent-Background.png"
-                    alt="image"
-                    class="google-icon"
-                    style="position: relative; bottom: 3px"
-                  />
-                </button>
+                    <img
+                      class="mb-5"
+                      src="/assets/google-logo-icon-PNG-Transparent-Background.png"
+                      alt="image"
+                      class="google-icon"
+                      style="position: relative; bottom: 3px"
+                    />
+                  </button>
+                </div>
+                <div class="col-3 d-flex justify-content-center">
+                  <button mat-fab style="background-color: white">
+                    <i
+                      class="bi bi-facebook"
+                      style="
+                        color: #3b5998;
+                        font-size: 35px;
+                        position: relative;
+                        bottom: 5px;
+                      "
+                    ></i>
+                  </button>
+                </div>
               </div>
-              <div class="col col-md-3 d-flex justify-content-center">
-                <button mat-fab style="background-color: white">
-                  <i
-                    class="bi bi-facebook"
-                    style="
-                      color: #3b5998;
-                      font-size: 35px;
-                      position: relative;
-                      bottom: 5px;
-                    "
-                  ></i>
-                </button>
-              </div>
-            </div>
-            </form>
-           </div
+            </form></div
         ></mat-card>
       </div>
     </div>
