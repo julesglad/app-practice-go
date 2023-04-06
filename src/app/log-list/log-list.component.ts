@@ -1,20 +1,27 @@
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { formatDate } from '@angular/common';
-import { Component, Inject, LOCALE_ID, OnInit } from '@angular/core';
+import { AfterViewInit, Component, Inject, LOCALE_ID, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Skill } from '../new-session/new-session.component';
 import { CrudService } from '../services/crud.service';
 import { Log } from '../services/log';
+import {MatSort, Sort} from '@angular/material/sort';
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
+
 
 @Component({
   selector: 'app-log-list',
   templateUrl: './log-list.component.html',
   styleUrls: ['./log-list.component.css'],
 })
-export class LogListComponent implements OnInit {
-  logList: Log[];
+export class LogListComponent implements AfterViewInit, OnInit {
+  @ViewChild('paginator') paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
+  logList:  Log[];
+  dataSource: MatTableDataSource<Log>
   displayedColumns: string[] = [
     'sessionDate',
     'totalHours',
@@ -28,11 +35,22 @@ export class LogListComponent implements OnInit {
   skills;
   skill;
   inst;
-  constructor(private crudApi: CrudService, public dialog: MatDialog) {}
+  sortedData: any;
+  length;
+  pageSize = 5;
+  pageIndex = 0;
+  pageSizeOptions = [5, 10, 25];
+  pageEvent: PageEvent;
+
+  constructor(private crudApi: CrudService, public dialog: MatDialog) {
+    this.getLogs()
+  }
 
   ngOnInit(): void {
-    // this.crudApi.GetLogsList()
-    this.getLogs();
+    //this.getLogs();
+  }
+  
+  ngAfterViewInit() {
   }
 
   //This gets the data from the backend and displays it
@@ -52,9 +70,14 @@ export class LogListComponent implements OnInit {
         log.skills = Object.values(log.skills);
         log.instruments = Object.values(log.instruments);
       });
+          this.dataSource = new MatTableDataSource<Log>(this.logList)
+          this.dataSource.paginator = this.paginator;
+
 
       console.log(this.logList);
     });
+
+
   }
 
   delete(log) {
@@ -76,7 +99,40 @@ export class LogListComponent implements OnInit {
     });
 
   }
+//Table functionality
+
+sortData(sort: Sort) {
+  const data = this.logList.slice();
+  if (!sort.active || sort.direction === '') {
+    this.logList = data;
+    return;
+  }
+
+  this.logList = data.sort((a, b) => {
+    const isAsc = sort.direction === 'asc';
+    switch (sort.active) {
+      case 'sessionDate':
+        return compare(a.sessionDate, b.sessionDate, isAsc);
+    
+      default:
+        return 0;
+    }
+  });
 }
+
+
+
+
+
+}
+
+function compare(a: number | string | Date, b: number | string | Date, isAsc: boolean) {
+return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
+}
+
+
+
+
 
 // EDIT LOG FUNCTIONS
 

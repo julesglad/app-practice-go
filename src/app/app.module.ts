@@ -46,6 +46,8 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatTooltipModule} from '@angular/material/tooltip';
+import {MatSortModule} from '@angular/material/sort';
+import {MatPaginatorModule} from '@angular/material/paginator';
 
 @NgModule({
   declarations: [
@@ -84,6 +86,8 @@ import {MatTooltipModule} from '@angular/material/tooltip';
     MatSliderModule,
     MatButtonModule,
     MatDialogModule,
+    MatSortModule,
+    MatPaginatorModule,
     MatIconModule,
     MatTableModule,
     MatChipsModule,

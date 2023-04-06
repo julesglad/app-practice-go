@@ -23,6 +23,7 @@ export class HomeComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    
     this.goalForm = this.fb.group({
       goalText: '',
       completed: false,

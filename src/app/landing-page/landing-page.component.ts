@@ -29,4 +29,6 @@ export class LandingPageComponent implements OnInit {
     this.view = viewName
   }
 
+  
+
 }

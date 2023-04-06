@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { distinctUntilChanged, tap } from 'rxjs';
 import { AuthService } from '../services/auth.service';
+import { CrudService } from '../services/crud.service';
 
 @Component({
   selector: 'app-navbar',
@@ -11,8 +12,10 @@ import { AuthService } from '../services/auth.service';
 })
 export class NavbarComponent implements OnInit {
   displayMetronome;
+  mobileView;
   Breakpoints = Breakpoints;
   currentBreakpoint:string = '';
+  userId
   
   readonly breakpoint$ = this.breakpointObserver
     .observe([Breakpoints.Large, Breakpoints.Medium, Breakpoints.Small, '(min-width: 500px)'])
@@ -22,7 +25,11 @@ export class NavbarComponent implements OnInit {
     );
     
 
-  constructor(public authService: AuthService, private router: Router, private breakpointObserver: BreakpointObserver) { }
+  constructor(public authService: AuthService, private router: Router, private breakpointObserver: BreakpointObserver, private crudApi: CrudService) {
+    this.crudApi.loadCurrent.subscribe((x) => {
+      this.userId = x
+    })
+   }
 
   ngOnInit(): void {
     this.breakpoint$.subscribe(() =>
@@ -41,13 +48,7 @@ export class NavbarComponent implements OnInit {
       this.currentBreakpoint = Breakpoints.Large;
     } else if(this.breakpointObserver.isMatched(Breakpoints.Medium)) {
       this.currentBreakpoint = Breakpoints.Medium;
-    } else if(this.breakpointObserver.isMatched(Breakpoints.Small)) {
-      this.currentBreakpoint = Breakpoints.Small;
-    } else if(this.breakpointObserver.isMatched('(min-width: 500px)')) {
-      this.currentBreakpoint = '(min-width: 500px)';
-    }
-
-    console.log(this.currentBreakpoint)
+    } 
   }
 
 }

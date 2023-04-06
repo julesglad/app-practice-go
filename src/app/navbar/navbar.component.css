@@ -8,12 +8,25 @@
   background-color: rgb(0, 177, 0);
   overflow: hidden !important;
 }
+
+.mat-toolbar {
+  background-color: white;
+}
+
+.flex-cont {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
 .content {
   padding: 20px;
 }
+
 .mat-list-item {
   color: white;
 }
+
 .navIcon {
   margin-top: 40px;
 }
@@ -51,4 +64,3 @@ hr {
 ::ng-deep .mat-form-field.mat-form-field-invalid .mat-form-field-label {
   color: red !important;
 }
-

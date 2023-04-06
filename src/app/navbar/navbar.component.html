@@ -1,79 +1,125 @@
-<mat-sidenav-container
-  *ngIf="authService.userData as user"
-  class="nav-container"
->
-  <mat-sidenav
-    class="sidenav"
-    #drawer
-    mode="side"
-    disableClose="true"
-    opened="true"
-  >
-    <mat-nav-list style="padding-top: 20px; height: 100%">
-      <mat-list-item style="margin-top: 10px; margin-bottom: 20px">
-        <i routerLink="home" class="bi bi-house" style="font-size: 35px"></i>
-      </mat-list-item>
-      <hr />
-      <mat-list-item>
-        <i
-          routerLink="new-session"
-          class="bi bi-plus-square"
-          style="font-size: 35px"
-        ></i>
-      </mat-list-item>
-      <mat-list-item class="navIcon">
-        <i class="bi bi-bar-chart-line-fill" routerLink="log-list" style="font-size: 35px"></i>
-      </mat-list-item>
-      <mat-list-item class="navIcon">
-        <i class="bi bi-play-circle-fill" style="font-size: 35px"
-        type="button" (click)="changeDisplayMetronome()"></i>
-      </mat-list-item>
-      <!-- <mat-list-item class="navIcon">
-        <i class="bi bi-music-note" style="font-size: 35px"></i>
-      </mat-list-item> -->
-    </mat-nav-list>
-  </mat-sidenav>
-  <mat-sidenav-content class="content">
-    <div class="row" style="padding-bottom: 60px">
-      <div class=" col-md-6 col-lg-7">
-        <img src="/assets/logo.png" style="width: 250px; padding-top: 10px" alt="image" />
-      </div>
+<div *ngIf="authService.userData as user" [ngSwitch]="currentBreakpoint" class="h-100">
+  <div *ngSwitchCase="Breakpoints.Medium">
+    <mat-toolbar class="flex-cont">
+      <img
+      src="/assets/logo.png"
+      style="width: 250px; padding-top: 10px"
+      alt="image"
+    />
+            <button
+        mat-icon-button
+        class="example-icon"
+        aria-label="Example icon-button with menu icon"
+        style="color: black;"
+      >
+      <i class="bi bi-list" style="font-size: 45px"></i>
+    </button>
 
-      <mat-expansion-panel hideToggle class="col-md-5 col-lg-4">
-        <mat-expansion-panel-header>
-          <mat-panel-title>
-            <div  style="font-size: 25px; padding-left: 25px; min-width: 200px; text-align: center;">
-              {{ user.displayName }}    <i
-                class="bi bi-person-circle"
-                style="
-                  font-size: 25px;
-                  padding-left: 15px;
-                  color: rgb(0, 177, 0);
-                "
-              ></i>
-            </div>
-            
-          </mat-panel-title>
-          <mat-panel-description> </mat-panel-description>
-        </mat-expansion-panel-header>
-        <div class="row">
-        <button
-          type="button"
-          class="btn col"
-          (click)="authService.SignOut()"
-          style="background-color: rgb(0, 177, 0); color: white"
-        >
-          Sign Out
-        </button></div>
-      </mat-expansion-panel>
-    </div>
+    </mat-toolbar>
     <div class="row">
       <router-outlet></router-outlet>
       <div>
         <app-toolbar *ngIf="displayMetronome"></app-toolbar>
       </div>
-      </div
-  ></mat-sidenav-content>
-</mat-sidenav-container>
+    </div>
+  </div>
+  <!--DESKTOP VIEW-->
+  <mat-sidenav-container
+    *ngSwitchCase="Breakpoints.Large"
+    class="nav-container"
+  >
+    <mat-sidenav
+      class="sidenav"
+      #drawer
+      mode="side"
+      disableClose="true"
+      opened="true"
+    >
+      <mat-nav-list style="padding-top: 20px; height: 100%">
+        <mat-list-item style="margin-top: 10px; margin-bottom: 20px">
+          <i routerLink="home" class="bi bi-house" style="font-size: 35px"></i>
+        </mat-list-item>
+        <hr />
+        <mat-list-item>
+          <i
+            routerLink="new-session"
+            class="bi bi-plus-square"
+            style="font-size: 35px"
+          ></i>
+        </mat-list-item>
+        <mat-list-item class="navIcon">
+          <i
+            class="bi bi-bar-chart-line-fill"
+            routerLink="log-list"
+            style="font-size: 35px"
+          ></i>
+        </mat-list-item>
+        <mat-list-item class="navIcon">
+          <i
+            class="bi bi-play-circle-fill"
+            style="font-size: 35px"
+            type="button"
+            (click)="changeDisplayMetronome()"
+          ></i>
+        </mat-list-item>
+        <!-- <mat-list-item class="navIcon">
+        <i class="bi bi-music-note" style="font-size: 35px"></i>
+      </mat-list-item> -->
+      </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content class="content">
+      <div class="row" style="padding-bottom: 60px">
+        <div class="col-md-6 col-lg-7">
+          <img
+            src="/assets/logo.png"
+            style="width: 250px; padding-top: 10px"
+            alt="image"
+          />
+        </div>
 
-<router-outlet *ngIf="!authService.userData as user"></router-outlet>
+        <mat-expansion-panel hideToggle class="col-md-5 col-lg-4">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <div
+                style="
+                  font-size: 25px;
+                  padding-left: 25px;
+                  min-width: 200px;
+                  text-align: center;
+                "
+              >
+                {{ user.displayName }}
+                <i
+                  class="bi bi-person-circle"
+                  style="
+                    font-size: 25px;
+                    padding-left: 15px;
+                    color: rgb(0, 177, 0);
+                  "
+                ></i>
+              </div>
+            </mat-panel-title>
+            <mat-panel-description> </mat-panel-description>
+          </mat-expansion-panel-header>
+          <div class="row">
+            <button
+              type="button"
+              class="btn col"
+              (click)="authService.SignOut()"
+              style="background-color: rgb(0, 177, 0); color: white"
+            >
+              Sign Out
+            </button>
+          </div>
+        </mat-expansion-panel>
+      </div>
+      <div class="row">
+        <router-outlet *ngIf="userId"></router-outlet>
+        <div>
+          <app-toolbar *ngIf="displayMetronome"></app-toolbar>
+        </div></div
+    ></mat-sidenav-content>
+  </mat-sidenav-container>
+
+  <router-outlet *ngIf="!authService.userData as user"></router-outlet>
+</div>
