@@ -48,6 +48,9 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatSortModule} from '@angular/material/sort';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import { SnackbarComponent } from './snackbar/snackbar.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import {MatMenuModule} from '@angular/material/menu';
 
 @NgModule({
   declarations: [
@@ -63,6 +66,7 @@ import {MatPaginatorModule} from '@angular/material/paginator';
     ToolbarComponent,
     AddInstrumentDialog,
     LandingPageComponent,
+    SnackbarComponent,
   ],
   imports: [
     BrowserModule,
@@ -91,7 +95,9 @@ import {MatPaginatorModule} from '@angular/material/paginator';
     MatIconModule,
     MatTableModule,
     MatChipsModule,
+    MatSnackBarModule,
     MatToolbarModule,
+    MatMenuModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
     AngularFirestoreModule,

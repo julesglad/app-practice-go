@@ -10,6 +10,7 @@ import { Instruments } from './instruments';
 import { Log } from './log';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { BehaviorSubject } from 'rxjs';
+import { MatSnackBar } from '@angular/material/snack-bar';
 @Injectable({
   providedIn: 'root',
 })
@@ -21,10 +22,14 @@ export class CrudService {
   goalsRef: AngularFireList<any>;
   goalRef: AngularFireObject<any>;
   userId: string;
-  loadSource = new BehaviorSubject<any>('')
+  loadSource = new BehaviorSubject<any>('');
   loadCurrent = this.loadSource.asObservable();
 
-  constructor(private db: AngularFireDatabase, private auth: AngularFireAuth) {
+  constructor(
+    private db: AngularFireDatabase,
+    private auth: AngularFireAuth,
+    private _snackBar: MatSnackBar
+  ) {
     this.auth.authState.subscribe((user) => {
       if (user) this.userId = user.uid;
       console.log(user);
@@ -32,25 +37,24 @@ export class CrudService {
       this.GetLogsList();
       this.GetInstrumentList();
       this.GetGoalList();
-      this.changeLoad$(this.userId)
+      this.changeLoad$(this.userId);
     });
   }
 
   changeLoad$(load$) {
-    this.loadSource.next(load$)
+    this.loadSource.next(load$);
   }
 
   //Create Log
   newLog(log: Log) {
     this.logsRef.push({
       sessionDate: log.sessionDate,
-      startTime: log.startTime,
       totalHours: log.totalHours,
       totalMinutes: log.totalMinutes,
       instruments: log.instruments,
       skills: log.skills,
       notes: log.notes,
-    });
+    }).then(x => this.openSnackBar('success!')).catch(error => console.log(error))
   }
   // Fetch Single Log Object
   getLog(id: string) {
@@ -69,7 +73,6 @@ export class CrudService {
   UpdateLog(log: Log) {
     this.logRef.update({
       sessionDate: log.sessionDate,
-      //startTime: log.startTime,
       totalHours: log.totalHours,
       totalMinutes: log.totalMinutes,
       instruments: log.instruments,
@@ -106,10 +109,12 @@ export class CrudService {
 
   //GOALS
   newGoal(g: Goal) {
-    this.goalsRef.push({
-      goalText: g.goalText,
-      completed: false,
-    });
+    this.goalsRef
+      .push({
+        goalText: g.goalText,
+        completed: false,
+      })
+      
   }
 
   GetGoalList() {
@@ -128,5 +133,9 @@ export class CrudService {
     this.db.database
       .ref('goals-list/' + this.userId + '/' + id)
       .update({ completed: g.completed });
+  }
+
+  openSnackBar(message: string) {
+    this._snackBar.open(message);
   }
 }

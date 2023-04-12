@@ -4,6 +4,9 @@ import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { FormBuilder, FormGroupDirective, Validators } from '@angular/forms';
 import { CrudService } from '../services/crud.service';
 import { formatDate } from '@angular/common';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Instruments } from '../services/instruments';
+
 
 export interface Skill {}
 
@@ -13,7 +16,7 @@ export interface Skill {}
   styleUrls: ['./new-session.component.css'],
 })
 export class NewSessionComponent implements OnInit {
-  instruments = ['Clarinet', 'Flute', 'Saxophone'];
+  instruments: Instruments[]
   logForm: any;
   addOnBlur = true;
   selectedValue;
@@ -27,10 +30,6 @@ export class NewSessionComponent implements OnInit {
       this.skills.push(value);
     }
     event.chipInput!.clear();
-    console.log(this.skills);
-
-    // this.logForm.skillsForm.push(value)
-
     this.logForm.patchValue({ skills: this.skills });
   }
 
@@ -45,46 +44,66 @@ export class NewSessionComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     public crudApi: CrudService,
-    @Inject(LOCALE_ID) public locale: string
+    @Inject(LOCALE_ID) public locale: string,
+    private _snackBar: MatSnackBar
   ) {}
 
   ngOnInit(): void {
+    this.getInstruments()
+
     this.logForm = this.fb.group({
       sessionDate: ['', Validators.required],
-      startTime: ['', Validators.required],
       totalHours: ['', Validators.required],
       totalMinutes: ['', Validators.required],
-      instruments: '',
+      instruments: [this.instruments, Validators.required],
       skills: [],
       notes: '',
       recording: '',
     });
+
+ 
+  }
+
+  getInstruments() {
+    let l = this.crudApi.GetInstrumentList()
+    l.snapshotChanges().subscribe(data => {
+      console.log(data),
+      this.instruments = [],
+      data.forEach((item) => {
+        let a = item.payload.toJSON();
+     //   a['$key'] = item.key;
+        this.instruments.push(a as Instruments);
+        console.log(a) 
+      })})
   }
 
   newLog() {
     if (this.logForm.invalid) {
-      console.log('nope');
+      this.openSnackBar('Please fill out all of the required form fields.')
+    } else {
+      this.logForm.patchValue({
+        sessionDate: formatDate(
+          this.logForm.value.sessionDate,
+          'MM-dd-yyyy',
+          this.locale
+        ),
+      });
+      this.crudApi.newLog(this.logForm.value);
+      setTimeout(
+        () => (
+          console.log(this.logForm.value),
+          (this.skills = []),
+          this.logForm.reset(),
+          this.logForm.markAsPristine(),
+          this.logForm.markAsUntouched(),
+          this.formGroupDirective.resetForm()
+        ),
+        10
+      );
     }
+  }
 
-    this.logForm.patchValue({
-      sessionDate: formatDate(
-        this.logForm.value.sessionDate,
-        'MM-dd-yyyy',
-        this.locale
-      ),
-    });
-    this.crudApi.newLog(this.logForm.value);
-    setTimeout(
-      () => (
-        console.log(this.logForm.value),
-        this.skills = [],
-        this.logForm.reset(),
-        this.logForm.markAsPristine(),
-        this.logForm.markAsUntouched(),
-        this.formGroupDirective.resetForm()
-
-      ),
-      10
-    );
+  openSnackBar(message: string) {
+    this._snackBar.open(message, '', {duration: 3000});
   }
 }

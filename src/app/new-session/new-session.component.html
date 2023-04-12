@@ -57,7 +57,7 @@
           formControlName="instruments"
         >
           <mat-option *ngFor="let inst of instruments" [value]="inst">{{
-            inst
+            inst.instrumentName
           }}</mat-option>
         </mat-select>
       </mat-form-field>

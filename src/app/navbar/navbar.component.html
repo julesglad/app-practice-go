@@ -1,20 +1,39 @@
-<div *ngIf="authService.userData as user" [ngSwitch]="currentBreakpoint" class="h-100">
+<div
+  *ngIf="authService.userData as user"
+  [ngSwitch]="currentBreakpoint"
+  class="h-100"
+>
   <div *ngSwitchCase="Breakpoints.Medium">
     <mat-toolbar class="flex-cont">
       <img
-      src="/assets/logo.png"
-      style="width: 250px; padding-top: 10px"
-      alt="image"
-    />
-            <button
+        src="/assets/logo.png"
+        style="width: 250px; padding-top: 10px"
+        alt="image"
+      />
+      <button
         mat-icon-button
         class="example-icon"
         aria-label="Example icon-button with menu icon"
-        style="color: black;"
+        style="color: black"
+        [matMenuTriggerFor]="menu"
       >
-      <i class="bi bi-list" style="font-size: 45px"></i>
-    </button>
+        <i class="bi bi-list" style="font-size: 45px"></i>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item
+        routerLink="home" 
+        >Home</button>
+        <button mat-menu-item
+        routerLink="new-session"
+        >New Session</button>
+        <button mat-menu-item
+        routerLink="log-list"
+        >View Logs</button>
+        <button mat-menu-item
+        (click)="changeDisplayMetronome()"
+        >Metronome</button>
 
+      </mat-menu>
     </mat-toolbar>
     <div class="row">
       <router-outlet></router-outlet>
@@ -62,9 +81,6 @@
             (click)="changeDisplayMetronome()"
           ></i>
         </mat-list-item>
-        <!-- <mat-list-item class="navIcon">
-        <i class="bi bi-music-note" style="font-size: 35px"></i>
-      </mat-list-item> -->
       </mat-nav-list>
     </mat-sidenav>
     <mat-sidenav-content class="content">
@@ -79,25 +95,13 @@
 
         <mat-expansion-panel hideToggle class="col-md-5 col-lg-4">
           <mat-expansion-panel-header>
-            <mat-panel-title>
-              <div
-                style="
-                  font-size: 25px;
-                  padding-left: 25px;
-                  min-width: 200px;
-                  text-align: center;
-                "
-              >
-                {{ user.displayName }}
-                <i
-                  class="bi bi-person-circle"
-                  style="
-                    font-size: 25px;
-                    padding-left: 15px;
-                    color: rgb(0, 177, 0);
-                  "
-                ></i>
-              </div>
+            <mat-panel-title style="font-size: 20px">
+              <i
+                class="bi bi-person-circle me-3"
+                style="font-size: 25px; color: rgb(0, 177, 0)"
+              ></i
+              ><span *ngIf="user.displayName"> {{ user.displayName }}</span>
+              <span *ngIf="!user.displayName"> {{ user.email }}</span>
             </mat-panel-title>
             <mat-panel-description> </mat-panel-description>
           </mat-expansion-panel-header>

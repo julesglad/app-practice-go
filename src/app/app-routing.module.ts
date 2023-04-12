@@ -13,15 +13,16 @@ import { VerifyEmailComponent } from './verify-email/verify-email.component';
 const routes: Routes = [
   { path: '', component: LandingPageComponent },
   { path: 'sign-in', component: LogInComponent },
- 
   { path: 'sign-up', component: SignUpComponent },
   { path: 'verify-email-address', component: VerifyEmailComponent }, {
     path: 'app',
     component: NavbarComponent,
+    canActivate: [AuthGuard],
     children: [
       {
         path: 'log-list',
         component: LogListComponent,
+        canActivate: [AuthGuard]
       },
       {
         path: 'new-session',
