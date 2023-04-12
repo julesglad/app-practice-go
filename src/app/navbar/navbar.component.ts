@@ -18,7 +18,7 @@ export class NavbarComponent implements OnInit {
   userId
   
   readonly breakpoint$ = this.breakpointObserver
-    .observe([Breakpoints.Large, Breakpoints.Medium, Breakpoints.Small, '(min-width: 500px)'])
+    .observe(['(min-width: 500px)', '(min-width: 900px)', '(max-width: 899px)'])
     .pipe(
       tap(value => console.log(value)),
       distinctUntilChanged()
@@ -44,9 +44,9 @@ export class NavbarComponent implements OnInit {
   }
 
   private breakpointChanged() {
-    if(this.breakpointObserver.isMatched(Breakpoints.Large)) {
+    if(this.breakpointObserver.isMatched('(min-width: 900px)')) {
       this.currentBreakpoint = Breakpoints.Large;
-    } else if(this.breakpointObserver.isMatched(Breakpoints.Medium)) {
+    } else if(this.breakpointObserver.isMatched('(max-width: 899px')) {
       this.currentBreakpoint = Breakpoints.Medium;
     } 
   }
