@@ -1,113 +1,108 @@
-<div class=" background" >
-<div class="row justify-content-center">
-  <div class="col">
-    <div class="row p-4">
-      <div class="col col-md-4">
-        <img class="logo" src="/assets/logo.png" alt="image" type="button"
-        routerLink="/"/>
+<div class="background">
+  <div class="row justify-content-center">
+    <div class="col">
+      <div class="row p-4">
+        <div class="col col-md-4">
+          <img
+            class="logo"
+            src="/assets/logo.png"
+            alt="image"
+            type="button"
+            routerLink="/"
+          />
+        </div>
       </div>
     </div>
-  </div>
 
-  <div class="col-12 " style="padding-top: 100px">
-    <div class="row justify-content-center align-items-center">
-      <div class="col-md-6 login-card">
-        <mat-card
-          class="mat-elevation-z8"
-          style="padding: 0px !important; margin: 0px !important"
-        >
-          <div class="pb-3">
-            <div class="login-toolbar rounded-top">Sign In</div>
+    <div class="col-12" style="padding-top: 100px">
+      <div class="row justify-content-center align-items-center">
+        <div class="col-md-6 login-card">
+          <mat-card
+            class="mat-elevation-z8"
+            style="padding: 0px !important; margin: 0px !important"
+          >
+            <div class="pb-3">
+              <div class="login-toolbar rounded-top">Sign In</div>
 
-            <form
-              [formGroup]="loginForm"
-              novalidate
-              class="p-3"
-              (submit)="signIn()"
-            >
-              <!-- <mat-form-field>
+              <form
+                [formGroup]="loginForm"
+                novalidate
+                class="p-3"
+                (submit)="signIn()"
+              >
+                <!-- <mat-form-field>
                             <i class="bi bi-person-fill"></i>
                             <input autofocus type="text" matInput >
                           </mat-form-field> -->
-              <mat-form-field appearance="outline">
-                <mat-label>Username or Email</mat-label>
+                <mat-form-field appearance="outline">
+                  <mat-label>Username or Email</mat-label>
 
-                <input
-                  matInput
-                  style="
-                    font-size: 15px;
-                    height: 17px;
-                    position: relative;
-                    bottom: 2px;
-                  "
-                  placeholder="Username or Email"
-                  formControlName="email"
-                />
-              </mat-form-field>
+                  <input
+                    matInput
+                    style="
+                      font-size: 15px;
+                      height: 17px;
+                      position: relative;
+                      bottom: 2px;
+                    "
+                    placeholder="Username or Email"
+                    formControlName="email"
+                  />
+                </mat-form-field>
 
-              <!-- <mat-form-field>
+                <!-- <mat-form-field>
                             <mat-icon matPrefix>lock_outline</mat-icon>
                             <input type="password" autocomplete="false" matInput 
                           </mat-form-field> -->
 
-              <mat-form-field appearance="outline">
-                <mat-label>Password</mat-label>
+                <mat-form-field appearance="outline">
+                  <mat-label>Password</mat-label>
 
-                <input
-                  matInput
-                  style="
-                    font-size: 15px;
-                    height: 17px;
-                    position: relative;
-                    bottom: 2px;
-                  "
-                  autocomplete="false"
-                  placeholder="Password"
-                  type="password"
-                  formControlName="password"
-                />
-              </mat-form-field>
-              <div class="row justify-content-center">
-                <div class="col-8 d-flex justify-content-center">
-                  <p style="padding-left: 10px">
-                    New here? <a href="/sign-up">Sign Up Now</a>
-                  </p>
+                  <input
+                    matInput
+                    style="
+                      font-size: 15px;
+                      height: 17px;
+                      position: relative;
+                      bottom: 2px;
+                    "
+                    autocomplete="false"
+                    placeholder="Password"
+                    type="password"
+                    formControlName="password"
+                  />
+                </mat-form-field>
+                <div class="row justify-content-center">
+                  <div class="col-8 d-flex justify-content-center">
+                    <p style="padding-left: 10px">
+                      New here? <a href="/sign-up">Sign Up Now</a>
+                    </p>
+                  </div>
                 </div>
-              </div>
-              <div class="row justify-content-center">
-                <button
-                  class="btn col-6"
-                  type="submit"
-                  style="
-                    background-color: rgb(0, 177, 0);
-                    color: white;
-                    margin-top: 20px;
-                  "
-                >
-                  Login
-                </button>
-              </div>
-              <div class="row justify-content-center pt-2">
-                <p class="col-6 text-center">or continue with</p>
-              </div>
-            </form>
-              <div class="row justify-content-center pb-3 pt-4">
+                <div class="row justify-content-center">
+                  <button
+                    class="btn col-6"
+                    type="submit"
+                    style="
+                      background-color: rgb(0, 177, 0);
+                      color: white;
+                      margin-top: 20px;
+                    "
+                  >
+                    Login
+                  </button>
+                </div>
+                <!-- <div class="row justify-content-center pt-2">
+                  <p class="col-6 text-center">or continue with</p>
+                </div> -->
+              </form>
+              <!-- <div class="row justify-content-center pb-3 pt-4">
                 <div class="col-3 d-flex justify-content-center">
                   <button
                     mat-fab
                     style="color: rgb(0, 0, 0, 54%); background-color: white"
                     (click)="authService.GoogleAuth()"
                   >
-                    <!-- <i
-                    class="bi bi-google"
-                    style="
-                      color: white;
-                      font-size: 20px;
-                      font-weight: bold;
-                      padding: 0px;
-                      margin: 0px;
-                    "
-                  ></i> -->
                     <img
                       class="mb-5"
                       src="/assets/google-logo-icon-PNG-Transparent-Background.png"
@@ -117,12 +112,11 @@
                     />
                   </button>
                 </div>
-             
-              </div>
-         </div
-        ></mat-card>
+              </div> -->
+            </div
+          ></mat-card>
+        </div>
       </div>
     </div>
   </div>
-</div>
 </div>
